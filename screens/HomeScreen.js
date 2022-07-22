@@ -6,7 +6,7 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
   UserIcon,
@@ -15,15 +15,19 @@ import {
   AdjustmentsIcon,
 } from "react-native-heroicons/outline";
 import Categories from "../components/Categories";
+import FeaturedRow from "../components/FeaturedRow";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const [featuredCategories, setFeaturedCategories] = useState([]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   }, []);
+
+  useEffect(() => {}, []);
 
   return (
     <SafeAreaView className="bg-white pt-5">
@@ -64,6 +68,25 @@ const HomeScreen = () => {
         <Categories />
 
         {/* FEATURED ITEMS */}
+        <FeaturedRow
+          title="Featured"
+          description="Paid partners placement"
+          id="featured"
+        />
+
+        {/* Tasty Discounts */}
+        <FeaturedRow
+          title="Tasty Discounts"
+          description="Everyone's enjoying these juicy discounts"
+          id="discounts"
+        />
+
+        {/* Offers near you */}
+        <FeaturedRow
+          title="Offers near you"
+          description="Why not support your local restaurants today"
+          id="offers"
+        />
       </ScrollView>
     </SafeAreaView>
   );
